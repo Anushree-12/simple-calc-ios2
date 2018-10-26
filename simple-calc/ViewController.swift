@@ -80,6 +80,7 @@ class ViewController: UIViewController {
             
             history.append("\(String(prevNumber)) \(String(operationType)) \(String(currentNumber)) = \(String(describing: lblOutput.text))")
             
+            
         } else if sender.tag == 20 {
             lblOutput.text = ""
             prevNumber = 0
@@ -89,11 +90,14 @@ class ViewController: UIViewController {
             numAverage = 0
         }
     }
-
-    @IBAction func btnHistory(_ sender: UIButton) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "History" {
+            let secondVC = segue.destination as! SecondViewController
+            secondVC.inputHistory = self.history
+            
+        }
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
